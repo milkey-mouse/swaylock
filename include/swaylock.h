@@ -114,6 +114,7 @@ struct swaylock_surface {
 	struct zwlr_layer_surface_v1 *layer_surface;
 	struct pool_buffer buffers[2];
 	struct pool_buffer indicator_buffers[2];
+	bool created;
 	bool frame_pending, dirty;
 	uint32_t width, height;
 	int32_t scale;
