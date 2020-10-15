@@ -167,6 +167,7 @@ static void create_surface(struct swaylock_surface *surface) {
 	}
 
 	wl_surface_commit(surface->surface);
+	surface->created = true;
 }
 
 static void layer_surface_configure(void *data,
@@ -256,7 +257,11 @@ static void handle_wl_output_mode(void *data, struct wl_output *output,
 }
 
 static void handle_wl_output_done(void *data, struct wl_output *output) {
-	// Who cares
+	struct swaylock_surface *surface = data;
+	if (!surface->created && surface->state->run_display) {
+		create_surface(surface);
+		wl_display_roundtrip(surface->state->display);
+	}
 }
 
 static void handle_wl_output_scale(void *data, struct wl_output *output,
@@ -322,11 +327,6 @@ static void handle_global(void *data, struct wl_registry *registry,
 		surface->output_global_name = name;
 		wl_output_add_listener(surface->output, &_wl_output_listener, surface);
 		wl_list_insert(&state->surfaces, &surface->link);
-
-		if (state->run_display) {
-			create_surface(surface);
-			wl_display_roundtrip(state->display);
-		}
 	}
 }
 
