@@ -99,8 +99,8 @@ struct swaylock_surface {
 	struct swaylock_state *state;
 	struct wl_output *output;
 	uint32_t output_global_name;
-	struct wl_surface *surface;
-	struct wl_surface *child; // surface made into subsurface
+	struct wl_surface *surface; // surface for background
+	struct wl_surface *child; // indicator surface made into subsurface
 	struct wl_subsurface *subsurface;
 	struct zwlr_layer_surface_v1 *layer_surface;
 	struct pool_buffer buffers[2];
@@ -111,6 +111,8 @@ struct swaylock_surface {
 	enum wl_output_subpixel subpixel;
 	char *output_name;
 	struct wl_list link;
+	// Dimensions of last wl_buffer committed to background surface
+	int last_buffer_width, last_buffer_height;
 };
 
 // There is exactly one swaylock_image for each -i argument
