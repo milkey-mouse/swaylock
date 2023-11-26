@@ -7,7 +7,7 @@ protocols:
 - ext-session-lock-v1, or
 - wlr-layer-shell and wlr-input-inhibitor
 
-See the man page, `swaylock(1)`, for instructions on using swaylock.
+See the man page, [swaylock(1)](swaylock.1.scd), for instructions on using swaylock.
 
 ## Release Signatures
 
