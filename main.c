@@ -1213,6 +1213,7 @@ int main(int argc, char **argv) {
 				"WAYLAND_DISPLAY environment variable.");
 		return EXIT_FAILURE;
 	}
+	state.eventloop = loop_create();
 
 	struct wl_registry *registry = wl_display_get_registry(state.display);
 	wl_registry_add_listener(registry, &registry_listener, &state);
@@ -1281,7 +1282,6 @@ int main(int argc, char **argv) {
 		daemonize();
 	}
 
-	state.eventloop = loop_create();
 	loop_add_fd(state.eventloop, wl_display_get_fd(state.display), POLLIN,
 			display_in, NULL);
 
