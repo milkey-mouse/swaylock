@@ -1,5 +1,5 @@
 project(
-	'swaylock',
+	'swaylock-transparent',
 	'c',
 	version: '1.7.2',
 	license: 'MIT',
@@ -115,15 +115,15 @@ if libpam.found()
 	sources += ['pam.c']
 	dependencies += [libpam]
 else
-	warning('The swaylock binary must be setuid when compiled without libpam')
-	warning('You must do this manually post-install: chmod a+s /path/to/swaylock')
+	warning('The swaylock-transparent binary must be setuid when compiled without libpam')
+	warning('You must do this manually post-install: chmod a+s /path/to/swaylock-transparent')
 	sources += ['shadow.c']
 	dependencies += [crypt]
 endif
 
 swaylock_inc = include_directories('include')
 
-executable('swaylock',
+executable('swaylock-transparent',
 	sources + protos_src,
 	include_directories: [swaylock_inc],
 	dependencies: dependencies,
@@ -140,7 +140,7 @@ endif
 if scdoc.found()
 	mandir = get_option('mandir')
 	man_files = [
-		'swaylock.1.scd',
+		'swaylock-transparent.1.scd',
 	]
 	foreach filename : man_files
 		topic = filename.split('.')[-3].split('/')[-1]

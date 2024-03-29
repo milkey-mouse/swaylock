@@ -1,12 +1,12 @@
-swaylock(1)
+swaylock-transparent(1)
 
 # NAME
 
-swaylock - Screen locker for Wayland
+swaylock-transparent - Screen locker for Wayland
 
 # SYNOPSIS
 
-_swaylock_ [options...]
+_swaylock-transparent_ [options...]
 
 Locks your Wayland session.
 

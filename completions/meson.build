@@ -5,7 +5,7 @@ datadir = get_option('datadir')
 
 if get_option('zsh-completions')
 	zsh_files = files(
-		'zsh/_swaylock',
+		'zsh/_swaylock-transparent',
 	)
 	zsh_install_dir = datadir + '/zsh/site-functions'
 
@@ -14,7 +14,7 @@ endif
 
 if get_option('bash-completions')
 	bash_files = files(
-		'bash/swaylock',
+		'bash/swaylock-transparent',
 	)
 	if bash_comp.found()
 		bash_install_dir = bash_comp.get_variable('completionsdir')
@@ -27,7 +27,7 @@ endif
 
 if get_option('fish-completions')
 	fish_files = files(
-		'fish/swaylock.fish',
+		'fish/swaylock-transparent.fish',
 	)
 	if fish_comp.found()
 		fish_install_dir = fish_comp.get_variable('completionsdir')
